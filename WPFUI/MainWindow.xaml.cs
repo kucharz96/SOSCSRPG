@@ -38,21 +38,25 @@ namespace WPFUI
         private void OnClick_MoveNorth(object sender, RoutedEventArgs e)
         {
             _gameSession.MoveNorth();
+            setCurrentLocationOnMap();
         }
 
         private void OnClick_MoveWest(object sender, RoutedEventArgs e)
         {
             _gameSession.MoveWest();
+            setCurrentLocationOnMap();
         }
 
         private void OnClick_MoveEast(object sender, RoutedEventArgs e)
         {
             _gameSession.MoveEast();
+            setCurrentLocationOnMap();
         }
 
         private void OnClick_MoveSouth(object sender, RoutedEventArgs e)
         {
             _gameSession.MoveSouth();
+            setCurrentLocationOnMap();
         }
 
         private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
@@ -167,6 +171,7 @@ namespace WPFUI
         private void Exit_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
+            closeMapWindow();
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
@@ -180,6 +185,8 @@ namespace WPFUI
             {
                 SaveGame();
             }
+
+            closeMapWindow();
         }
 
         private void SaveGame()
@@ -194,6 +201,34 @@ namespace WPFUI
             if (saveFileDialog.ShowDialog() == true)
             {
                 SaveGameService.Save(_gameSession, saveFileDialog.FileName);
+            }
+        }
+
+        private void OpenMap(object sender, RoutedEventArgs e)
+        {           
+            var location = _gameSession.CurrentLocation;
+            MapWindow map = new MapWindow(location.XCoordinate, location.YCoordinate);
+            map.Show();
+        }
+
+        private void setCurrentLocationOnMap()
+        {
+            foreach (var window in Application.Current.Windows)
+            {
+                if (window is MapWindow)
+                {
+                    ((MapWindow)window).selectCurrentLocation(_gameSession.CurrentLocation.XCoordinate, _gameSession.CurrentLocation.YCoordinate);
+                }
+            }
+        }
+        private void closeMapWindow()
+        {
+            foreach (var window in Application.Current.Windows)
+            {
+                if (window is MapWindow)
+                {
+                    ((MapWindow)window).Close();
+                }
             }
         }
     }

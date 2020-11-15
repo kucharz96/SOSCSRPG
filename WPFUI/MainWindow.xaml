@@ -50,6 +50,9 @@
                 <Separator/>
                 <MenuItem Header="About"
                           IsEnabled="False"/>
+                <MenuItem Header="Map"
+                          IsEnabled="True"
+                          Click="OpenMap"/>
             </MenuItem>
         </Menu>
 
