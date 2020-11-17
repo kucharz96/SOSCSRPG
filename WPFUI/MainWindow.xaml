@@ -7,110 +7,59 @@
         d:DataContext="{d:DesignInstance viewModels:GameSession}"
         mc:Ignorable="d"
         FontSize="11pt"
-        Title="Scott's Awesome Game" Height="768" Width="1024"
+        Title="Scott's Awesome Game" Height="800" Width="1100"
         KeyDown="MainWindow_OnKeyDown"
         Closing="MainWindow_OnClosing">
-
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        <Style x:Key="ButtonStyleConnect" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Fill="#D0D0D0"/>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonLabelStyleConnect" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="NumberLabelStyleConnect" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="225"/>
+            <RowDefinition Height="0.85*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <!-- Menu -->
-        <Menu Grid.Row="0" Grid.Column="0"
-              Grid.ColumnSpan="2"
-              FontSize="11pt"
-              Background="AliceBlue">
-            <MenuItem Header="File">
-                <MenuItem Header="Start New Game"
-                          Click="StartNewGame_OnClick"/>
-                <Separator/>
-                <MenuItem Header="Load Game"
-                          Click="LoadGame_OnClick"/>
-                <MenuItem Header="Save Game"
-                          Click="SaveGame_OnClick"/>
-                <Separator/>
-                <MenuItem Header="Exit"
-                          Click="Exit_OnClick"/>
-            </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="Help"
-                          IsEnabled="False"/>
-                <Separator/>
-                <MenuItem Header="About"
-                          IsEnabled="False"/>
-                <MenuItem Header="Map"
-                          IsEnabled="True"
-                          Click="OpenMap"/>
-            </MenuItem>
-        </Menu>
-
-        <!-- Player stats -->
-        <Grid Grid.Row="1" Grid.Column="0" Background="Aquamarine">
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <ImageBrush>
+                    <ImageBrush.ImageSource>
+                        <BitmapImage UriSource="pack://application:,,,/Engine;component/Images/mainBackground.png"/>
+                    </ImageBrush.ImageSource>
+                </ImageBrush>
+            </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.9*"></RowDefinition>
             </Grid.RowDefinitions>
-
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Class:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass}"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Dexterity:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.Dexterity}"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="Hit points:"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.CurrentHitPoints}"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="Gold:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
-            <Label Grid.Row="5" Grid.Column="0" Content="XP:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}"/>
-            <Label Grid.Row="6" Grid.Column="0" Content="Level:"/>
-            <Label Grid.Row="6" Grid.Column="1" Content="{Binding CurrentPlayer.Level}"/>
-        </Grid>
-
-        <!-- Gameplay -->
-        <Grid Grid.Row="1" Grid.Column="1"
-              Background="Beige">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Game Messages -->
-            <Border Grid.Row="0" Grid.Column="0"
-                    Grid.RowSpan="2"
-                    BorderBrush="Gainsboro"
-                    BorderThickness="1">
-
+            <Grid Grid.Column="0" Grid.Row="1" Margin="30, 0, 10, 10">
                 <RichTextBox x:Name="GameMessages"
-                             Background="Beige"
+                             Background="White" 
+                             Opacity="0.8"
                              VerticalScrollBarVisibility="Auto">
                     <RichTextBox.Resources>
                         <Style TargetType="{x:Type Paragraph}">
@@ -118,254 +67,186 @@
                         </Style>
                     </RichTextBox.Resources>
                 </RichTextBox>
-
-            </Border>
-
-            <!-- Location information -->
-            <Border Grid.Row="0" Grid.Column="1"
-                    BorderBrush="Gainsboro"
-                    BorderThickness="1">
-
-                <Grid Margin="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0"
-                               HorizontalAlignment="Center"
-                               Text="{Binding CurrentLocation.Name}"/>
-
-                    <Image Grid.Row="1"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Height="125"
-                           Width="125"
-                           Source="{Binding CurrentLocation.ImageName, 
-                                            Converter={StaticResource FileToBitmapConverter}}"/>
-
-                    <TextBlock Grid.Row="2"
-                               HorizontalAlignment="Center"
-                               Text="{Binding CurrentLocation.Description}"
-                               TextWrapping="Wrap"/>
-                </Grid>
-
-            </Border>
-
-            <!-- Monster information -->
-            <Border Grid.Row="1" Grid.Column="1"
-                    BorderBrush="Gainsboro"
-                    BorderThickness="1">
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0"
-                               HorizontalAlignment="Center"
-                               Height="Auto"
-                               Text="{Binding CurrentMonster.Name}" />
-
-                    <Image Grid.Row="1"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Height="125"
-                           Width="125"
-                           Source="{Binding CurrentMonster.ImageName, 
-                                            Converter={StaticResource FileToBitmapConverter}}"/>
-
-                    <StackPanel Grid.Row="2"
-                                Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                        <TextBlock>Current Hit Points:</TextBlock>
-                        <TextBlock Text="{Binding CurrentMonster.CurrentHitPoints}" />
-                    </StackPanel>
-
-                </Grid>
-
-            </Border>
-
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="1" Margin="10, 0, 30, 10">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.8" Color="White"/>
+                </Grid.Background>
+                <Label>Action animation</Label>
+            </Grid>
         </Grid>
-
-        <!-- Inventory, Quests, and Recipes -->
-        <Grid Grid.Row="2" Grid.Column="0"
-              Background="BurlyWood">
-
-            <TabControl x:Name="PlayerDataTabControl">
-                <TabItem Header="Inventory"
-                         x:Name="InventoryTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory.GroupedInventory}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Description"
-                                                Binding="{Binding Item.Name, Mode=OneWay}"
-                                                Width="*"/>
-                            <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
-                            <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Item.Price, Mode=OneWay}"
-                                                Width="Auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-
-                <TabItem Header="Quests"
-                         x:Name="QuestsTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding PlayerQuest.Name, Mode=OneWay}"
-                                                Width="*">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ToolTip" 
-                                                Value="{Binding PlayerQuest.ToolTipContents}"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Done?"
-                                                Binding="{Binding IsCompleted, Mode=OneWay}"
-                                                Width="Auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-
-                <TabItem Header="Recipes"
-                         x:Name="RecipesTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Recipes}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name, Mode=OneWay}"
-                                                Width="*">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ToolTip" 
-                                                Value="{Binding ToolTipContents}"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-                            <DataGridTemplateColumn MinWidth="75">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Click="OnClick_Craft"
-                                                Width="55"
-                                                Content="Craft"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
-        </Grid>
-
-        <!-- Action controls -->
-        <Grid Grid.Row="2" Grid.Column="1"
-              Background="Lavender">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <SolidColorBrush Color="Black"/>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="255" />
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <!-- Combat Controls -->
-            <Grid Grid.Row="0" Grid.Column="0"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center">
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-
-                <ComboBox Grid.Row="0" Grid.Column="0"
-                          Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
-                          ItemsSource="{Binding CurrentPlayer.Inventory.Weapons}"
-                          SelectedItem="{Binding CurrentPlayer.CurrentWeapon}"
-                          DisplayMemberPath="Name"/>
-
-                <Button Grid.Row="0" Grid.Column="2"
-                        Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
-                        Content="Use"
-                        Click="OnClick_AttackMonster"/>
-
-                <ComboBox Grid.Row="1" Grid.Column="0"
-                          Visibility="{Binding CurrentPlayer.Inventory.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
-                          ItemsSource="{Binding CurrentPlayer.Inventory.Consumables}"
-                          SelectedItem="{Binding CurrentPlayer.CurrentConsumable}"
-                          DisplayMemberPath="Name"/>
-
-                <Button Grid.Row="1" Grid.Column="2"
-                        Visibility="{Binding CurrentPlayer.Inventory.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
-                        Content="Use"
-                        Click="OnClick_UseCurrentConsumable"/>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="pack://application:,,,/Engine;component/Images/Icons/64/heart.png" />
+                    <Label Foreground="White" Grid.Column="1">Tu ma byc pasek zdrowia</Label>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="15, 0, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="pack://application:,,,/Engine;component/Images/Other/exp.png" />
+                        <Label Grid.Column="1" Style="{StaticResource NumberLabelStyleConnect}" Content="{Binding CurrentPlayer.ExperiencePoints}"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="pack://application:,,,/Engine;component/Images/Icons/64/coin.png" />
+                        <Label Grid.Column="1" Style="{StaticResource NumberLabelStyleConnect}" Content="{Binding CurrentPlayer.Gold}"/>
+                    </Grid>
+                </Grid>
             </Grid>
-
-            <!-- Movement Controls -->
-            <Grid Grid.Row="0" Grid.Column="1">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
+            <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <Button Grid.Row="0" Grid.Column="1" 
-                        Height="25" Width="65" Margin="10" 
-                        Click="OnClick_MoveNorth"
-                        Visibility="{Binding HasLocationToNorth, Converter={StaticResource BooleanToVisibility}}"
-                        Content="North"/>
-                <Button Grid.Row="1" Grid.Column="0" 
-                        Height="25" Width="65" Margin="10" 
-                        Click="OnClick_MoveWest"
-                        Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}"
-                        Content="West"/>
-                <Button Grid.Row="1" Grid.Column="1" 
-                        Height="25" Width="65" Margin="10" 
-                        Click="OnClick_DisplayTradeScreen"
-                        Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
-                        Content="Trade"/>
-                <Button Grid.Row="1" Grid.Column="2" 
-                        Height="25" Width="65" Margin="10" 
-                        Click="OnClick_MoveEast"
-                        Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}"
-                        Content="East"/>
-                <Button Grid.Row="2" Grid.Column="1" 
-                        Height="25" Width="65" Margin="10" 
-                        Click="OnClick_MoveSouth"
-                        Visibility="{Binding HasLocationToSouth, Converter={StaticResource BooleanToVisibility}}"
-                        Content="South"/>
-
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 1</Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 2</Label>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 3</Label>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 4</Label>
+                </Grid>
             </Grid>
-
+            <Grid Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">INVENTORY</Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/scroll.png" />
+                        </Button>
+                    </Grid>
+                    <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">QUESTS</Label>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/tools.png" />
+                        </Button>
+                    </Grid>
+                    <Label Foreground="White" Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">BLUEPRINTS</Label>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Name="MapButton" Click="MapButton_Click">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/map.png" />
+                        </Button>
+                    </Grid>
+                    <Label Foreground="White" Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">MAP</Label>
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"></RowDefinition>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/tome.png" />
+                        </Button>
+                    </Grid>
+                    <Label Foreground="White" Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">MENU</Label>
+                </Grid>
+            </Grid>
         </Grid>
-
     </Grid>
 </Window>

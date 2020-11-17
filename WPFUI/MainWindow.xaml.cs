@@ -35,25 +35,25 @@ namespace WPFUI
             SetActiveGameSessionTo(new GameSession());
         }
 
-        private void OnClick_MoveNorth(object sender, RoutedEventArgs e)
+        private void MoveNorth()
         {
             _gameSession.MoveNorth();
             setCurrentLocationOnMap();
         }
 
-        private void OnClick_MoveWest(object sender, RoutedEventArgs e)
+        private void MoveWest()
         {
             _gameSession.MoveWest();
             setCurrentLocationOnMap();
         }
 
-        private void OnClick_MoveEast(object sender, RoutedEventArgs e)
+        private void MoveEast()
         {
             _gameSession.MoveEast();
             setCurrentLocationOnMap();
         }
 
-        private void OnClick_MoveSouth(object sender, RoutedEventArgs e)
+        private void MoveSouth()
         {
             _gameSession.MoveSouth();
             setCurrentLocationOnMap();
@@ -94,15 +94,15 @@ namespace WPFUI
 
         private void InitializeUserInputActions()
         {
-            _userInputActions.Add(Key.W, () => _gameSession.MoveNorth());
-            _userInputActions.Add(Key.A, () => _gameSession.MoveWest());
-            _userInputActions.Add(Key.S, () => _gameSession.MoveSouth());
-            _userInputActions.Add(Key.D, () => _gameSession.MoveEast());
+            _userInputActions.Add(Key.W, () => MoveNorth());
+            _userInputActions.Add(Key.A, () => MoveWest());
+            _userInputActions.Add(Key.S, () => MoveSouth());
+            _userInputActions.Add(Key.D, () => MoveEast());
             _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
             _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
-            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
-            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
-            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
+            //_userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            //_userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
+            //_userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
             _userInputActions.Add(Key.T, () => OnClick_DisplayTradeScreen(this, new RoutedEventArgs()));
         }
 
@@ -114,7 +114,7 @@ namespace WPFUI
             }
         }
 
-        private void SetTabFocusTo(string tabName)
+        /*private void SetTabFocusTo(string tabName)
         {
             foreach(object item in PlayerDataTabControl.Items)
             {
@@ -127,7 +127,7 @@ namespace WPFUI
                     }
                 }
             }
-        }
+        }*/
 
         private void SetActiveGameSessionTo(GameSession gameSession)
         {
@@ -204,8 +204,8 @@ namespace WPFUI
             }
         }
 
-        private void OpenMap(object sender, RoutedEventArgs e)
-        {           
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
             var location = _gameSession.CurrentLocation;
             MapWindow map = new MapWindow(location.XCoordinate, location.YCoordinate);
             map.Show();
