@@ -150,6 +150,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\menuBackground.png" />
     <Resource Include="Images\Icons\128\armor.png" />
     <Resource Include="Images\Icons\128\axe.png" />
     <Resource Include="Images\Icons\128\axe2.png" />
