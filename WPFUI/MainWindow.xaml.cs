@@ -91,14 +91,26 @@ namespace WPFUI
             setCurrentLocationOnMap();
         }
 
-        private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
+        private void ItemUsed(object sender, RoutedEventArgs e)
         {
-            _gameSession.AttackCurrentMonster();
-        }
-
-        private void OnClick_UseCurrentConsumable(object sender, RoutedEventArgs e)
-        {
-            _gameSession.UseCurrentConsumable();
+            string name = (sender as Button).Name;
+            int index = int.Parse(name.Substring(name.Length - 1));
+            var item = _gameSession.CurrentPlayer.QuickChoiceItems.getQuickChoiceItems()[index];
+            if(item.Category == GameItem.ItemCategory.Weapon)
+            {
+                _gameSession.CurrentPlayer.CurrentWeapon = item;
+                _gameSession.AttackCurrentMonster();
+            }
+            else if(item.Category == GameItem.ItemCategory.Consumable)
+            {
+                _gameSession.CurrentPlayer.CurrentConsumable = item;
+                _gameSession.UseCurrentConsumable();
+            }
+            else if(item.Category == GameItem.ItemCategory.None)
+            {
+                _gameSession.CurrentPlayer.CurrentWeapon = null;
+                _gameSession.CurrentPlayer.CurrentConsumable = null;
+            }
         }
 
         private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
@@ -115,6 +127,15 @@ namespace WPFUI
                 tradeScreen.Owner = this;
                 tradeScreen.DataContext = _gameSession;
                 tradeScreen.ShowDialog();
+            }
+        }
+
+        private void CraftItems(object sender, RoutedEventArgs e)
+        {
+            CraftingWindow craftingWindow = new CraftingWindow(_gameSession);
+            if(craftingWindow.ShowDialog() == true)
+            {
+
             }
         }
 

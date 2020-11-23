@@ -95,9 +95,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="pack://application:,,,/Engine;component/Images/Icons/64/heart.png" />
-                    <Label Foreground="White" Grid.Column="1">Tu ma byc pasek zdrowia</Label>
+                    <ProgressBar Height="30" Width="300" Grid.Column="1" HorizontalAlignment="Left" Foreground="LimeGreen" Value="{Binding CurrentPlayer.CurrentHitPoints, Mode=OneWay}" Maximum="{Binding CurrentPlayer.MaximumHitPoints}" Minimum="0"/>
+                    <Label Content="{Binding CurrentPlayer.CurrentHitPoints}" Grid.Column="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -135,8 +137,8 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
-                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem0">
+                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/swordWood.png" />
                         </Button>
                     </Grid>
                     <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 1</Label>
@@ -147,7 +149,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem1">
                             <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
                         </Button>
                     </Grid>
@@ -159,7 +161,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem2">
                             <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
                         </Button>
                     </Grid>
@@ -171,7 +173,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem3">
                             <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
                         </Button>
                     </Grid>
@@ -216,7 +218,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="CraftItems">
                             <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/tools.png" />
                         </Button>
                     </Grid>

@@ -10,6 +10,7 @@ namespace Engine.Models
 
         private string _characterClass;
         private int _experiencePoints;
+        private QuickChoiceItems _quickChoiceItems;
 
         public string CharacterClass
         {
@@ -51,6 +52,17 @@ namespace Engine.Models
 
             Quests = new ObservableCollection<QuestStatus>();
             Recipes = new ObservableCollection<Recipe>();
+            QuickChoiceItems = new QuickChoiceItems(4);
+        }
+
+        public QuickChoiceItems QuickChoiceItems
+        {
+            get => _quickChoiceItems;
+            private set
+            {
+                _quickChoiceItems = value;
+                OnPropertyChanged();
+            }
         }
 
         public void AddExperience(int experiencePoints)

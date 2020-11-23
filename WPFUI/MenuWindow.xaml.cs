@@ -65,8 +65,12 @@ namespace WPFUI
             {
                 mainWindow = new MainWindow(SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName));
             }
-            mainWindow.Show();
-            this.Hide();
+
+            if (mainWindow != null)
+            {
+                mainWindow.Show();
+                this.Hide();
+            } 
         }
 
         private void SaveGameBtn_MouseUp(object sender, MouseButtonEventArgs e)

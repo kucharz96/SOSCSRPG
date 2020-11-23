@@ -139,7 +139,9 @@ namespace Engine.ViewModels
 
             if (!CurrentPlayer.Inventory.Weapons.Any())
             {
-                CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
+                var defaultItem = ItemFactory.CreateGameItem(1001);
+                CurrentPlayer.AddItemToInventory(defaultItem);
+                CurrentPlayer.QuickChoiceItems.InsertItem(0,defaultItem);
             }
 
             CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(2001));
@@ -288,7 +290,7 @@ namespace Engine.ViewModels
             _messageBroker.RaiseMessage(result);
         }
 
-        public void CraftItemUsing(Recipe recipe)
+        public string CraftItemUsing(Recipe recipe)
         {
             if(CurrentPlayer.Inventory.HasAllTheseItems(recipe.Ingredients))
             {
@@ -303,6 +305,8 @@ namespace Engine.ViewModels
                         _messageBroker.RaiseMessage($"You craft 1 {outputItem.Name}");
                     }
                 }
+
+                return $"You craft 1 {recipe.Name}";
             }
             else
             {
@@ -312,6 +316,7 @@ namespace Engine.ViewModels
                     _messageBroker
                         .RaiseMessage($"  {itemQuantity.Quantity} {ItemFactory.ItemName(itemQuantity.ItemID)}");
                 }
+                return "You do not have the required ingredients!";
             }
         }
 

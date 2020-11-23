@@ -151,7 +151,7 @@ namespace Engine.Models
             Gold = gold;
             Level = level;
 
-            Inventory = new Inventory();
+            Inventory = new Inventory(); 
         }
 
         public void UseCurrentWeaponOn(LivingEntity target)

@@ -68,6 +68,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\QuestStatus.cs" />
+    <Compile Include="Models\QuickChoiceItems.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Trader.cs" />
     <Compile Include="Models\World.cs" />
@@ -150,6 +151,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\Other\blacksmith.png" />
+    <Resource Include="Images\craftingBackground.jpg" />
     <Resource Include="Images\menuBackground.png" />
     <Resource Include="Images\Icons\128\armor.png" />
     <Resource Include="Images\Icons\128\axe.png" />

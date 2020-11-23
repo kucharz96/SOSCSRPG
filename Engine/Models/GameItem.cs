@@ -9,7 +9,8 @@ namespace Engine.Models
         {
             Miscellaneous,
             Weapon,
-            Consumable
+            Consumable,
+            None
         }
 
         [JsonIgnore]
@@ -23,6 +24,10 @@ namespace Engine.Models
         public bool IsUnique { get; }
         [JsonIgnore]
         public IAction Action { get; set; }
+
+        public GameItem() {
+            this.Category = ItemCategory.None;
+        }
 
         public GameItem(ItemCategory category, int itemTypeID, string name, int price,
                         bool isUnique = false, IAction action = null)
