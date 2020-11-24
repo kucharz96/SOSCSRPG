@@ -57,7 +57,8 @@ namespace Engine.Factories
                                  node.AttributeAsInt("ID"),
                                  node.AttributeAsString("Name"),
                                  node.AttributeAsInt("Price"),
-                                 itemCategory == GameItem.ItemCategory.Weapon);
+                                 itemCategory == GameItem.ItemCategory.Weapon,
+                                 imagePath: node.AttributeAsString("ImagePath"));
 
                 if(itemCategory == GameItem.ItemCategory.Weapon)
                 {

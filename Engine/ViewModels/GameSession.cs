@@ -141,7 +141,7 @@ namespace Engine.ViewModels
             {
                 var defaultItem = ItemFactory.CreateGameItem(1001);
                 CurrentPlayer.AddItemToInventory(defaultItem);
-                CurrentPlayer.QuickChoiceItems.InsertItem(0,defaultItem);
+                CurrentPlayer.QuickChoiceItems.InsertItem(defaultItem);
             }
 
             CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(2001));

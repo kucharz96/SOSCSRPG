@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
+        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine" xmlns:customcontrols="clr-namespace:WPFUI.CustomControls"
         d:DataContext="{d:DesignInstance viewModels:GameSession}"
         mc:Ignorable="d"
         FontSize="11pt"
+        AllowDrop="True"
         Title="Scott's Awesome Game" Height="800" Width="1100"
         KeyDown="MainWindow_OnKeyDown"
         Closing="MainWindow_OnClosing">
@@ -15,6 +16,18 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Fill="#D0D0D0"/>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InventoryButtonStyleConnect" TargetType="{x:Type customcontrols:InventoryButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customcontrols:InventoryButton}">
                         <Grid>
                             <Ellipse Fill="#D0D0D0"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -124,7 +137,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="2">
+            <Grid x:Name="quickChoiceButtons" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -137,9 +150,8 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem0">
-                            <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/swordWood.png" />
-                        </Button>
+                        <customcontrols:InventoryButton Grid.Column="0" Grid.Row="0"  MouseDoubleClick="ItemUsed"  Background="LightGray" Margin="0,10,-0.4,-0.2"/>
+
                     </Grid>
                     <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 1</Label>
                 </Grid>
@@ -149,9 +161,8 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem1">
-                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
-                        </Button>
+                        <customcontrols:InventoryButton Grid.Column="0" Grid.Row="0"  MouseDoubleClick="ItemUsed"  Background="LightGray" Margin="0,10,-0.4,-0.2"/>
+
                     </Grid>
                     <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 2</Label>
                 </Grid>
@@ -161,9 +172,8 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem2">
-                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
-                        </Button>
+                        <customcontrols:InventoryButton  Grid.Column="0" Grid.Row="0"  MouseDoubleClick="ItemUsed"  Background="LightGray" Margin="0,10,-0.4,-0.2"/>
+
                     </Grid>
                     <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 3</Label>
                 </Grid>
@@ -173,9 +183,9 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="ItemUsed" Name="QuickItem3">
-                            <!--<Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />-->
-                        </Button>
+
+                        <customcontrols:InventoryButton Grid.Column="0" Grid.Row="0" MouseDoubleClick="ItemUsed" Background="LightGray" Margin="0,10,-0.4,-0.2"/>
+
                     </Grid>
                     <Label Grid.Row="1" Style="{StaticResource ButtonLabelStyleConnect}">ITEM 4</Label>
                 </Grid>
@@ -194,7 +204,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5" Click="Inventory_Click">
                             <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/backpack.png" />
                         </Button>
                     </Grid>

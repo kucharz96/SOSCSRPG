@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -10,6 +11,7 @@ using Engine.Models;
 using Engine.Services;
 using Engine.ViewModels;
 using Microsoft.Win32;
+using WPFUI.CustomControls;
 using WPFUI.Windows;
 
 namespace WPFUI
@@ -32,6 +34,7 @@ namespace WPFUI
             InitializeUserInputActions();
 
             SetActiveGameSessionTo(new GameSession());
+            SetQuickChoiceItems();
         }
 
         public MainWindow(GameSession gameSession)
@@ -43,6 +46,22 @@ namespace WPFUI
             SetActiveGameSessionTo(gameSession);
         }
 
+        public GameSession GetGameSession()
+        {
+            return _gameSession;
+        }
+        private void SetQuickChoiceItems()
+        {
+            int counter = 0;
+            var grid = quickChoiceButtons.Children.Cast<Grid>().ElementAt(0)
+                        .Children.Cast<Grid>().ElementAt(0);
+            foreach (var item in _gameSession.CurrentPlayer.QuickChoiceItems.getQuickChoiceItems())
+            {
+                var button = grid.Children.Cast<InventoryButton>().ElementAt(counter);
+                button.setItem(item);
+                counter++;
+            }
+        }
         public void SaveGame()
         {
             SaveFileDialog saveFileDialog =
@@ -91,25 +110,26 @@ namespace WPFUI
             setCurrentLocationOnMap();
         }
 
-        private void ItemUsed(object sender, RoutedEventArgs e)
+        private void ItemUsed(object sender, MouseButtonEventArgs e)
         {
-            string name = (sender as Button).Name;
-            int index = int.Parse(name.Substring(name.Length - 1));
-            var item = _gameSession.CurrentPlayer.QuickChoiceItems.getQuickChoiceItems()[index];
-            if(item.Category == GameItem.ItemCategory.Weapon)
+            var item = (sender as InventoryButton).item;
+            if(item != null)
             {
-                _gameSession.CurrentPlayer.CurrentWeapon = item;
-                _gameSession.AttackCurrentMonster();
-            }
-            else if(item.Category == GameItem.ItemCategory.Consumable)
-            {
-                _gameSession.CurrentPlayer.CurrentConsumable = item;
-                _gameSession.UseCurrentConsumable();
-            }
-            else if(item.Category == GameItem.ItemCategory.None)
-            {
-                _gameSession.CurrentPlayer.CurrentWeapon = null;
-                _gameSession.CurrentPlayer.CurrentConsumable = null;
+                if (item.Category == GameItem.ItemCategory.Weapon)
+                {
+                    _gameSession.CurrentPlayer.CurrentWeapon = item;
+                    _gameSession.AttackCurrentMonster();
+                }
+                else if (item.Category == GameItem.ItemCategory.Consumable)
+                {
+                    _gameSession.CurrentPlayer.CurrentConsumable = item;
+                    _gameSession.UseCurrentConsumable();
+                }
+                else if (item.Category == GameItem.ItemCategory.None)
+                {
+                    _gameSession.CurrentPlayer.CurrentWeapon = null;
+                    _gameSession.CurrentPlayer.CurrentConsumable = null;
+                }
             }
         }
 
@@ -245,6 +265,17 @@ namespace WPFUI
         private void OnClick_OpenMenu(object sender, RoutedEventArgs e)
         {
             MenuWindow.menuWindow.Show();
+        }
+
+        private void Inventory_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryWindow inventoryWindow = new InventoryWindow(_gameSession);
+            inventoryWindow.Show();
+        }
+
+        private void QuickItem0_Drop(object sender, DragEventArgs e)
+        {
+
         }
     }
 }

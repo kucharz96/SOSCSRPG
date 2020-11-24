@@ -151,6 +151,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\inventoryBackground.png" />
     <Resource Include="Images\Other\blacksmith.png" />
     <Resource Include="Images\craftingBackground.jpg" />
     <Resource Include="Images\menuBackground.png" />

@@ -9,39 +9,19 @@ namespace Engine.Models
     public class QuickChoiceItems
     {
         private int size;
-        private List<GameItem> _quickChoiceItems = null; //LIFO
-
-        public QuickChoiceItems(int size)
+         List<GameItem> _quickChoiceItems = new List<GameItem>(); //LIFO
+        public void InsertItem(GameItem item)
         {
-            this.size = size;
-            _quickChoiceItems = CreateList(this.size);
+            _quickChoiceItems.Add(item);
+            item.IsInQuickChoose = true;
+
         }
 
-        public List<GameItem> CreateList(int size)
+        public void RemoveItem(GameItem item)
         {
-            List<GameItem> list = new List<GameItem>();
-            for(int i=0; i < size; i++)
-            {
-                list.Add(new GameItem());
-            }
+            _quickChoiceItems.Remove(item);
+            item.IsInQuickChoose = false;
 
-            return list;
-        }
-
-        public void InsertItem(int index, GameItem item)
-        {           
-            if(_quickChoiceItems != null)
-            {
-                if (!string.IsNullOrEmpty(_quickChoiceItems[index].Name))
-                {
-                    _quickChoiceItems.RemoveAt(index);
-                }
-
-                if (index < size)
-                {
-                    _quickChoiceItems.Insert(index, item);
-                }                          
-            }
         }
 
         public List<GameItem> getQuickChoiceItems()

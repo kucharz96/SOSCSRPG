@@ -58,7 +58,13 @@
     <Compile Include="CraftingWindow.xaml.cs">
       <DependentUpon>CraftingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\InventoryButton.xaml.cs">
+      <DependentUpon>InventoryButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomConverters\FileToBitmapConverter.cs" />
+    <Compile Include="InventoryWindow.xaml.cs">
+      <DependentUpon>InventoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
@@ -72,6 +78,14 @@
       <DependentUpon>YesNoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CraftingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\InventoryButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

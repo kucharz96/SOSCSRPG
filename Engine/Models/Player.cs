@@ -52,7 +52,7 @@ namespace Engine.Models
 
             Quests = new ObservableCollection<QuestStatus>();
             Recipes = new ObservableCollection<Recipe>();
-            QuickChoiceItems = new QuickChoiceItems(4);
+            QuickChoiceItems = new QuickChoiceItems();
         }
 
         public QuickChoiceItems QuickChoiceItems
