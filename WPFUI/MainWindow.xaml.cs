@@ -272,7 +272,11 @@ namespace WPFUI
             InventoryWindow inventoryWindow = new InventoryWindow(_gameSession);
             inventoryWindow.Show();
         }
-
+        private void OpenQuests(object sender, RoutedEventArgs e)
+        {
+            QuestsWindow questWindow = new QuestsWindow(_gameSession.CurrentPlayer.Quests.ToList());
+            questWindow.Show();
+        }
         private void QuickItem0_Drop(object sender, DragEventArgs e)
         {
 

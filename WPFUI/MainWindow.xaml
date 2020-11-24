@@ -216,7 +216,7 @@
                         <RowDefinition Height="0.3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Button Style="{StaticResource ButtonStyleConnect}" Margin="5">
+                        <Button Style="{StaticResource ButtonStyleConnect}" Click="OpenQuests" Margin="5">
                             <Image Source="pack://application:,,,/Engine;component/Images/Icons/64/scroll.png" />
                         </Button>
                     </Grid>

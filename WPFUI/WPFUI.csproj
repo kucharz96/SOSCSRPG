@@ -61,6 +61,9 @@
     <Compile Include="CustomControls\InventoryButton.xaml.cs">
       <DependentUpon>InventoryButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\QuestItem.xaml.cs">
+      <DependentUpon>QuestItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomConverters\FileToBitmapConverter.cs" />
     <Compile Include="InventoryWindow.xaml.cs">
       <DependentUpon>InventoryWindow.xaml</DependentUpon>
@@ -70,6 +73,9 @@
     </Compile>
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestsWindow.xaml.cs">
+      <DependentUpon>QuestsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TradeScreen.xaml.cs">
       <DependentUpon>TradeScreen.xaml</DependentUpon>
@@ -82,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\InventoryButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\QuestItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuestsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

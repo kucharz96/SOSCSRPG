@@ -1,0 +1,33 @@
+﻿<Window x:Class="WPFUI.QuestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFUI" xmlns:customcontrols="clr-namespace:WPFUI.CustomControls"
+        mc:Ignorable="d"
+        Title="QuestsWindow" Height="619.66" Width="806.511">
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="pack://application:,,,/Engine;component/Images/questsBackground.png"/>
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
+    <Grid Margin="0,116,0,79.4" x:Name="quests">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <customcontrols:QuestItem Grid.Column="0" Grid.Row="0"></customcontrols:QuestItem>
+        <customcontrols:QuestItem Grid.Column="0" Grid.Row="1"></customcontrols:QuestItem>
+        <customcontrols:QuestItem Grid.Column="0" Grid.Row="2"></customcontrols:QuestItem>
+        <customcontrols:QuestItem Grid.Column="0" Grid.Row="3"></customcontrols:QuestItem>
+
+
+    </Grid>
+</Window>
