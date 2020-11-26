@@ -143,7 +143,7 @@ namespace WPFUI
         {
             if (_gameSession.CurrentTrader != null)
             {
-                TradeScreen tradeScreen = new TradeScreen();
+                TradeScreen tradeScreen = new TradeScreen(_gameSession);
                 tradeScreen.Owner = this;
                 tradeScreen.DataContext = _gameSession;
                 tradeScreen.ShowDialog();

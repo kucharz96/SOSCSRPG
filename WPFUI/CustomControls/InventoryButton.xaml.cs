@@ -28,7 +28,7 @@ namespace WPFUI.CustomControls
             InitializeComponent();
         }
 
-        public void setItem(GameItem item)
+        public void setItem(GameItem item, bool? showTooltip = false)
         {
             this.item = item;
             if (!string.IsNullOrEmpty(item.ImagePath))
@@ -38,6 +38,12 @@ namespace WPFUI.CustomControls
                 {
                    button.Opacity = 0.4;
                    image.Opacity = 0.4;
+                }
+                if(showTooltip != null && showTooltip == true)
+                {
+                    string toolTipStr = item.Name + "\nPrice: " + item.Price;
+                    ToolTip toolTip = new ToolTip { Content = toolTipStr };
+                    button.ToolTip = toolTip;
                 }
             }
         }
@@ -92,6 +98,23 @@ namespace WPFUI.CustomControls
                         }
                     }
 
+                }
+                else // handel
+                if (Window.GetWindow(inventoryTo) is TradeScreen && Window.GetWindow(inventoryFrom) is TradeScreen)
+                {
+                    var window = (TradeScreen)Window.GetWindow(inventoryTo);
+
+                    var iv = (TradeScreen)Window.GetWindow(inventoryFrom);
+
+                    if (inventoryFrom.Name.Contains("player"))
+                    {
+                        iv.SellItem(inventoryFrom.item);
+                    }
+                    else if(inventoryFrom.Name.Contains("trader"))
+                    {
+                        iv.BuyItem(inventoryFrom.item);
+                    }
+                    iv.Rebuild();
                 }
                 else
                 {

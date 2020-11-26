@@ -8,8 +8,29 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         FontSize="11pt"
-        Title="Trade Screen" Height="480" Width="640">
-
+        xmlns:customcontrols="clr-namespace:WPFUI.CustomControls"
+        Title="Trade Screen" Height="650" Width="800">
+    <Window.Resources>
+        <Style x:Key="ButtonStyleConnect" TargetType="{x:Type Button}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" >
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="pack://application:,,,/Engine;component/Images/tradingBackground.jpg"/>
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,6 +41,7 @@
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
@@ -28,87 +50,69 @@
                HorizontalAlignment="Center"
                Content="{Binding CurrentTrader.Name}"/>
         
-        <Label Grid.Row="1" Grid.Column="0"
-               HorizontalAlignment="Center"
-               Content="Your Inventory"/>
+        <Label Grid.Row="1" Grid.Column="0"  
+               Content="Your Inventory" 
+               Margin="20, 0, 0, 0"/>
         <Label Grid.Row="1" Grid.Column="1"
-               HorizontalAlignment="Center"
-               Content="Trader's Inventory"/>
-        
-        <DataGrid Grid.Row="2" Grid.Column="0"
-                  Margin="10"
-                  ItemsSource="{Binding CurrentPlayer.Inventory.GroupedInventory}"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="Column"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  VerticalScrollBarVisibility="Auto">
+               Content="Trader's Inventory"
+               Margin="40, 0, 0, 0"/>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Description"
-                                    IsReadOnly="True"
-                                    Width="*"
-                                    Binding="{Binding Item.Name}"/>
-                <DataGridTextColumn Header="Qty"
-                                    IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Price"
-                                    IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Item.Price}"/>
-                <DataGridTemplateColumn MinWidth="75">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="OnClick_Sell"
-                                    Width="55"
-                                    Content="Sell 1"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+        <Grid Name="tradePlayerInventoryPack" Margin="10,0,30,10" Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
 
-        </DataGrid>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="2" Grid.Column="1"
-                  Margin="10"
-                  ItemsSource="{Binding CurrentTrader.Inventory.GroupedInventory}"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="Column"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  VerticalScrollBarVisibility="Auto">
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="player"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="player1"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="player2"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="player3"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="player4"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="player5"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="player6"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="player7"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="player8"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="player9"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="player10"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="player11"></customcontrols:InventoryButton>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Description"
-                                    IsReadOnly="True"
-                                    Width="*"
-                                    Binding="{Binding Item.Name}"/>
-                <DataGridTextColumn Header="Qty"
-                                    IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Price"
-                                    IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Item.Price}"/>
-                <DataGridTemplateColumn MinWidth="75">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="OnClick_Buy"
-                                    Width="55"
-                                    Content="Buy 1"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+        </Grid>
 
-        </DataGrid>
+        <Grid Name="tradeTraderInventoryPack" Margin="30,0,10,10" Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
 
-        <Button Grid.Row="3" Grid.Column="1"
-                HorizontalAlignment="Right"
-                Width="75"
-                Content="Close"
-                Click="OnClick_Close"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="trader"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="trader1"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="0" Width="100" Height="100" Background="LightGray" x:Name="trader2"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="trader3"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="trader4"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="1" Width="100" Height="100" Background="LightGray" x:Name="trader5"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="trader6"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="trader7"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="2" Width="100" Height="100" Background="LightGray" x:Name="trader8"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="0" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="trader9"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="1" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="trader10"></customcontrols:InventoryButton>
+            <customcontrols:InventoryButton Grid.Column="2" Grid.Row="3" Width="100" Height="100" Background="LightGray" x:Name="trader11"></customcontrols:InventoryButton>
+
+        </Grid>
     </Grid>
 </Window>

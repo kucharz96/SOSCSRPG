@@ -151,6 +151,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\Icons\honey.png" />
+    <Resource Include="Images\Icons\raisins.png" />
+    <Resource Include="Images\tradingBackground.jpg" />
+    <Resource Include="Images\Icons\oats.png" />
+    <Resource Include="Images\Icons\ratClaw.png" />
+    <Resource Include="Images\Icons\spiderSilk.png" />
+    <Resource Include="Images\Icons\ratFur.png" />
+    <Resource Include="Images\Icons\ratTail.png" />
+    <Resource Include="Images\Icons\spiderFang.png" />
+    <Resource Include="Images\Icons\snakeSkin.png" />
+    <Resource Include="Images\Icons\snakeFang.png" />
     <Resource Include="Images\Icons\check.png" />
     <Resource Include="Images\Icons\xred.png" />
     <Resource Include="Images\questsBackground.png" />

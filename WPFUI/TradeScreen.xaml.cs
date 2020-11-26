@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using Engine.Models;
 using Engine.ViewModels;
+using WPFUI.CustomControls;
 
 namespace WPFUI
 {
@@ -9,49 +11,69 @@ namespace WPFUI
     /// </summary>
     public partial class TradeScreen : Window
     {
-        public GameSession Session => DataContext as GameSession;
-
-        public TradeScreen()
+        private GameSession _gameSession;
+        public bool? isSelling;
+        public TradeScreen(GameSession session)
         {
             InitializeComponent();
+            _gameSession = session;
+            isSelling = null;
+            Rebuild();
         }
 
-        private void OnClick_Sell(object sender, RoutedEventArgs e)
+        public void Rebuild()
         {
-            GroupedInventoryItem groupedInventoryItem = 
-                ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
-
-            if(groupedInventoryItem != null)
+            int counter = 0;
+            foreach (var b in tradePlayerInventoryPack.Children.Cast<InventoryButton>())
             {
-                Session.CurrentPlayer.ReceiveGold(groupedInventoryItem.Item.Price);
-                Session.CurrentTrader.AddItemToInventory(groupedInventoryItem.Item);
-                Session.CurrentPlayer.RemoveItemFromInventory(groupedInventoryItem.Item);
+                b.item = null;
+                b.image.Source = null;
+            }
+
+
+            foreach (var item in _gameSession.CurrentPlayer.Inventory.Items)
+            {
+                var button = tradePlayerInventoryPack.Children.Cast<InventoryButton>().ElementAt(counter);
+                button.setItem(item, true);
+                counter++;
+            }
+
+            int counterTrader = 0;
+            foreach (var b in tradeTraderInventoryPack.Children.Cast<InventoryButton>())
+            {
+                b.item = null;
+                b.image.Source = null;
+            }
+
+
+            foreach (var item in _gameSession.CurrentTrader.Inventory.Items)
+            {
+                var button = tradeTraderInventoryPack.Children.Cast<InventoryButton>().ElementAt(counterTrader);
+                button.setItem(item, true);
+                counterTrader++;
             }
         }
 
-        private void OnClick_Buy(object sender, RoutedEventArgs e)
+        public void SellItem(GameItem item)
         {
-            GroupedInventoryItem groupedInventoryItem = 
-                ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
-
-            if(groupedInventoryItem != null)
-            {
-                if(Session.CurrentPlayer.Gold >= groupedInventoryItem.Item.Price)
-                {
-                    Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
-                    Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
-                    Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
-                }
-                else
-                {
-                    MessageBox.Show("You do not have enough gold");
-                }
-            }
+            _gameSession.CurrentPlayer.ReceiveGold(item.Price);
+            _gameSession.CurrentTrader.AddItemToInventory(item);
+            _gameSession.CurrentPlayer.RemoveItemFromInventory(item);
+            isSelling = null;
         }
 
-        private void OnClick_Close(object sender, RoutedEventArgs e)
+        public void BuyItem(GameItem item)
         {
-            Close();
+            if (_gameSession.CurrentPlayer.Gold >= item.Price)
+            {
+                _gameSession.CurrentPlayer.SpendGold(item.Price);
+                _gameSession.CurrentTrader.RemoveItemFromInventory(item);
+                _gameSession.CurrentPlayer.AddItemToInventory(item);
+            }
+            else
+            {
+                MessageBox.Show("You do not have enough gold");
+            }
         }
     }
 }

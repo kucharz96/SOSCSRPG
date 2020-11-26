@@ -3,22 +3,22 @@
   <Weapons>
     <Weapon ID="1001" Name="Pointy stick" Price="1" MinimumDamage="1" MaximumDamage="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/64/swordWood.png"/>
     <Weapon ID="1002" Name="Rusty sword" Price="5" MinimumDamage="1" MaximumDamage="3" ImagePath="pack://application:,,,/Engine;component/Images/Icons/64/sword.png"/>
-    <Weapon ID="1501" Name="Snake fang" Price="0" MinimumDamage="1" MaximumDamage="2" ImagePath=""/>
-    <Weapon ID="1502" Name="Rat claw" Price="0" MinimumDamage="1" MaximumDamage="2" ImagePath=""/>
-    <Weapon ID="1503" Name="Spider fang" Price="0" MinimumDamage="1" MaximumDamage="4" ImagePath=""/>
+    <Weapon ID="1501" Name="Snake fang" Price="0" MinimumDamage="1" MaximumDamage="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/snakeFang.png"/>
+    <Weapon ID="1502" Name="Rat claw" Price="0" MinimumDamage="1" MaximumDamage="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/ratClaw.png"/>
+    <Weapon ID="1503" Name="Spider fang" Price="0" MinimumDamage="1" MaximumDamage="4" ImagePath="pack://application:,,,/Engine;component/Images/Icons/spiderFang.png"/>
   </Weapons>
   <HealingItems>
-    <HealingItem ID="2001" Name="Granola bar" Price="5" HitPointsToHeal="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/64/potionRed.png"/>
+    <HealingItem ID="2001" Name="Health potion" Price="5" HitPointsToHeal="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/64/potionRed.png"/>
   </HealingItems>
   <MiscellaneousItems>
-    <MiscellaneousItem ID="3001" Name="Oats" Price="1" ImagePath=""/>
-    <MiscellaneousItem ID="3002" Name="Honey" Price="2" ImagePath=""/>
-    <MiscellaneousItem ID="3003" Name="Raisins" Price="2" ImagePath=""/>
-    <MiscellaneousItem ID="9001" Name="Snake fang" Price="1" ImagePath=""/>
-    <MiscellaneousItem ID="9002" Name="Snakeskin" Price="2" ImagePath=""/>
-    <MiscellaneousItem ID="9003" Name="Rat tail" Price="1" ImagePath=""/>
-    <MiscellaneousItem ID="9004" Name="Rat fur" Price="2" ImagePath=""/>
-    <MiscellaneousItem ID="9005" Name="Spider fang" Price="1" ImagePath=""/>
-    <MiscellaneousItem ID="9006" Name="Spider silk" Price="2" ImagePath=""/>
+    <MiscellaneousItem ID="3001" Name="Oats" Price="1" ImagePath="pack://application:,,,/Engine;component/Images/Icons/oats.png"/>
+    <MiscellaneousItem ID="3002" Name="Honey" Price="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/honey.png"/>
+    <MiscellaneousItem ID="3003" Name="Raisins" Price="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/raisins.png"/>
+    <MiscellaneousItem ID="9001" Name="Snake fang" Price="1" ImagePath="pack://application:,,,/Engine;component/Images/Icons/snakeFang.png"/>
+    <MiscellaneousItem ID="9002" Name="Snakeskin" Price="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/snakeSkin.png"/>
+    <MiscellaneousItem ID="9003" Name="Rat tail" Price="1" ImagePath="pack://application:,,,/Engine;component/Images/Icons/ratTail.png"/>
+    <MiscellaneousItem ID="9004" Name="Rat fur" Price="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/ratFur.png"/>
+    <MiscellaneousItem ID="9005" Name="Spider fang" Price="1" ImagePath="pack://application:,,,/Engine;component/Images/Icons/spiderFang.png"/>
+    <MiscellaneousItem ID="9006" Name="Spider silk" Price="2" ImagePath="pack://application:,,,/Engine;component/Images/Icons/spiderSilk.png"/>
   </MiscellaneousItems>
 </GameItems>
