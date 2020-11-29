@@ -85,7 +85,29 @@
                 <Grid.Background>
                     <SolidColorBrush Opacity="0.8" Color="White"/>
                 </Grid.Background>
-                <Label>Action animation</Label>
+                <Grid Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               HorizontalAlignment="Center"
+                               Text="{Binding CurrentLocation.Name}"/>
+
+                    <Image Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Width="200"
+                           Height="200"
+                           Source="{Binding CurrentLocation.ImageName, Converter={StaticResource FileToBitmapConverter}}"/>
+
+                    <TextBlock Grid.Row="2"
+                               HorizontalAlignment="Center"
+                               Text="{Binding CurrentLocation.Description}"
+                               TextWrapping="Wrap"/>
+                </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
