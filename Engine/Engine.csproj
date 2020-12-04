@@ -151,6 +151,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\controlsBackground.jpg" />
     <Resource Include="Images\Icons\honey.png" />
     <Resource Include="Images\Icons\raisins.png" />
     <Resource Include="Images\tradingBackground.jpg" />

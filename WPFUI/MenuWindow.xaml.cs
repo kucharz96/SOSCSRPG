@@ -111,7 +111,8 @@ namespace WPFUI
 
         private void ControlsBtn_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
+            ControlsScreen controlsScreen = new ControlsScreen();
+            controlsScreen.Show();
         }
     }
 }

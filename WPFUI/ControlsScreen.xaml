@@ -1,0 +1,84 @@
+﻿<Window x:Class="WPFUI.ControlsScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFUI"
+        mc:Ignorable="d"
+        Title="ControlsScreen" Height="500" Width="800">
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="pack://application:,,,/Engine;component/Images/tradingBackground.jpg"/>
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalAlignment="Center" Margin="20">Controls</Label>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Move north</Label>
+                    <Label HorizontalAlignment="Right">W</Label>
+                </Grid>
+                <Grid Grid.Row="1" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Move south</Label>
+                    <Label HorizontalAlignment="Right">S</Label>
+                </Grid>
+                <Grid Grid.Row="2" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Move west</Label>
+                    <Label HorizontalAlignment="Right">A</Label>
+                </Grid>
+                <Grid Grid.Row="3" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Move east</Label>
+                    <Label HorizontalAlignment="Right">D</Label>
+                </Grid>
+                <Grid Grid.Row="4" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Trade</Label>
+                    <Label HorizontalAlignment="Right">T</Label>
+                </Grid>
+                <Grid Grid.Row="5" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Attack</Label>
+                    <Label HorizontalAlignment="Right">Z</Label>
+                </Grid>
+                <Grid Grid.Row="6" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Inventory</Label>
+                    <Label HorizontalAlignment="Right">I</Label>
+                </Grid>
+                <Grid Grid.Row="7" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Map</Label>
+                    <Label HorizontalAlignment="Right">M</Label>
+                </Grid>
+                <Grid Grid.Row="8" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Quests</Label>
+                    <Label HorizontalAlignment="Right">Q</Label>
+                </Grid>
+                <Grid Grid.Row="9" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Crafting</Label>
+                    <Label HorizontalAlignment="Right">C</Label>
+                </Grid>
+                <Grid Grid.Row="10" Margin="100 0 100 0" VerticalAlignment="Center">
+                    <Label>Main menu</Label>
+                    <Label HorizontalAlignment="Right">ESC</Label>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
