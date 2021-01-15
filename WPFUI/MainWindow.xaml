@@ -73,7 +73,7 @@
                 <RichTextBox x:Name="GameMessages"
                              Background="White" 
                              Opacity="0.8"
-                             VerticalScrollBarVisibility="Auto">
+                             VerticalScrollBarVisibility="Auto" Focusable="False">
                     <RichTextBox.Resources>
                         <Style TargetType="{x:Type Paragraph}">
                             <Setter Property="Margin" Value="0"/>
