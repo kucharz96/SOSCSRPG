@@ -55,10 +55,17 @@ namespace WPFUI
         }
 
         public void SellItem(GameItem item)
-        {
-            _gameSession.CurrentPlayer.ReceiveGold(item.Price);
-            _gameSession.CurrentTrader.AddItemToInventory(item);
-            _gameSession.CurrentPlayer.RemoveItemFromInventory(item);
+        { 
+            if (_gameSession.CurrentTrader.Inventory.Items.Count < 12)
+            {
+                _gameSession.CurrentPlayer.ReceiveGold(item.Price);
+                _gameSession.CurrentTrader.AddItemToInventory(item);
+                _gameSession.CurrentPlayer.RemoveItemFromInventory(item);
+            }
+            else
+            {
+                MessageBox.Show("Trader has not enought space");
+            }
             isSelling = null;
         }
 
@@ -66,9 +73,16 @@ namespace WPFUI
         {
             if (_gameSession.CurrentPlayer.Gold >= item.Price)
             {
-                _gameSession.CurrentPlayer.SpendGold(item.Price);
-                _gameSession.CurrentTrader.RemoveItemFromInventory(item);
-                _gameSession.CurrentPlayer.AddItemToInventory(item);
+                if (_gameSession.CurrentPlayer.Inventory.Items.Count < 12)
+                {
+                    _gameSession.CurrentPlayer.SpendGold(item.Price);
+                    _gameSession.CurrentTrader.RemoveItemFromInventory(item);
+                    _gameSession.CurrentPlayer.AddItemToInventory(item);
+                }
+                else
+                {
+                    MessageBox.Show("You have not enought space");
+                }
             }
             else
             {

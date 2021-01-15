@@ -67,7 +67,15 @@ namespace Engine.Models
             foreach(GameItem gameItem in _opponent.Inventory.Items)
             {
                 _messageBroker.RaiseMessage($"You receive one {gameItem.Name}.");
-                _player.AddItemToInventory(gameItem);
+                if(_player.Inventory.Items.Count >= 12)
+                {
+                    _messageBroker.RaiseMessage($"You have no space for {gameItem.Name}. Go to the trader and sell something.");
+                    break;
+                }
+                else
+                {
+                    _player.AddItemToInventory(gameItem);
+                }                
             }
 
             OnCombatVictory?.Invoke(this, new CombatVictoryEventArgs());
